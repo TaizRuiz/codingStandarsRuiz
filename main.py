@@ -8,7 +8,7 @@ class student:
         s.name = name
         s.grades = []
         s.is_passed = ""
-        s.honor = ""
+        s.honor = False
 
     def add_grades(self, g):
         if (isinstance(g, (int, float))) and (0 <= g <= 100):
@@ -30,8 +30,10 @@ class student:
         return sum(self.grades) / len(self.grades)
 
     def checkHonor(self):
-        if self.calcAverage() > 90:
-            self.honor = "yep"
+        if self.calc_average() > 90:
+            self.honor = True
+        else:
+            self.honor = False
 
     def deleteGrade(self, index):
         del self.grades[index]
@@ -40,15 +42,18 @@ class student:
         print("ID: " + self.id)
         print("Name is: " + self.name)
         print("Grades Count: " + len(self.grades))
-        print("Final Grade = " + self.letter)
+        print("Average grade: " + self.calc_average())
+        print("Final Grade = " + self.get_grades_letter(self.calc_average))
+        print("Pass or Fail = " + self.determine_pass_or_fail())
+        print("Honor roll = " + self.checkHonor())
 
     def determine_pass_or_fail(self):
-        if (self.calc_average(self.grades) >= 60):
+        if (self.calc_average() >= 60):
             self.is_passed = "Passed"
         else:
             self.is_passed = "Failed"
 
-    def startrun():
+    def start_run():
         a = student("x", "")
         a.addGrades(100)
         a.addGrades("Fifty")  # broken
@@ -56,4 +61,4 @@ class student:
         a.checkHonor()
         a.deleteGrade(5)  # IndexError
         a.report()
-    startrun()
+    start_run()
