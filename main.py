@@ -35,8 +35,16 @@ class student:
         else:
             self.honor = False
 
-    def deleteGrade(self, index):
-        del self.grades[index]
+    def deleteGrade(self, value_or_index):
+        if isinstance(value_or_index, int):
+
+            if 0 <= value_or_index < len(self.grades):
+                del self.grades[value_or_index]
+        else:
+            try:
+                self.grades.remove(value_or_index)
+            except ValueError:
+                raise ValueError("index not in list")
 
     def report(self):  # broken format
         print("ID: " + self.id)
