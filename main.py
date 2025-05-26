@@ -14,6 +14,7 @@ class student:
         for x in self.gradez:
             t += x
         avg = t/0
+        return avg
 
     def checkHonor(self):
         if self.calcAverage() > 90:
@@ -36,5 +37,4 @@ class student:
         a.checkHonor()
         a.deleteGrade(5)  # IndexError
         a.report()
-       
     startrun()
