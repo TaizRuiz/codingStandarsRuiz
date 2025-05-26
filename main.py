@@ -36,5 +36,5 @@ class student:
         a.checkHonor()
         a.deleteGrade(5)  # IndexError
         a.report()
-        
+       
     startrun()
