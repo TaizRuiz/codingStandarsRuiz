@@ -1,13 +1,17 @@
 class student:
     def __init__(s, id, name):
+        if not name or str(name).strip == "":
+            print("name not entered")
+        if not id or str(id).strip == "":
+            print("id not entered")
         s.id = id
         s.name = name
         s.grades = []
-        s.is_passed = "NO"
-        s.honor = "?"
+        s.is_passed = ""
+        s.honor = ""
 
     def add_grades(self, g):
-        if g >= 0 and g <= 100:
+        if (isinstance(g, (int, float))) and (0 <= g <= 100):
             self.grades.append(g)
 
     def get_grades_letter(average):
@@ -21,11 +25,9 @@ class student:
             return "F"
 
     def calc_average(self):
-        t = 0
-        for x in self.grades:
-            t += x
-        avg = t/len(self.grades)
-        return self.get_grades_letter(avg)
+        if not self.grades:
+            return 0
+        return sum(self.grades) / len(self.grades)
 
     def checkHonor(self):
         if self.calcAverage() > 90:
@@ -39,6 +41,12 @@ class student:
         print("Name is: " + self.name)
         print("Grades Count: " + len(self.grades))
         print("Final Grade = " + self.letter)
+
+    def determine_pass_or_fail(self):
+        if (self.calc_average(self.grades) >= 60):
+            self.is_passed = "Passed"
+        else:
+            self.is_passed = "Failed"
 
     def startrun():
         a = student("x", "")
